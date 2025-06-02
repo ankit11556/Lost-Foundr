@@ -7,7 +7,7 @@ const postSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum:['Lost','Found'],
+    enum:['lost','found'],
     required: true
   },
   itemName: {
