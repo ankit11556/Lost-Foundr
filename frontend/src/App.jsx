@@ -1,12 +1,14 @@
-import Navbar from "./components/Navbar"
-import AddPost from "./pages/AddPost"
+import AppRoutes from "./routes/AppRoutes"
 function App() {
   
   return (
-    <>
-      <Navbar></Navbar>
-      <AddPost></AddPost>
-    </>
+  
+  <div className="bg-gradient-to-l from-slate-300 to-slate-100 text-slate-600  min-h-screen">
+  <div className="flex flex-wrap justify-center gap-6 flex-grow ">
+    <AppRoutes></AppRoutes>
+  </div>
+ </div>
+    
   )
 }
 

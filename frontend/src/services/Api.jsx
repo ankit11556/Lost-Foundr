@@ -3,7 +3,9 @@
  
  
  export const addPostApi = async (data) => {
-  console.log(data);
-  
   return await axios.post(`${API_URL}/post/add`,data)
+ }
+
+ export const getPostApi = async()=>{
+  return await axios.get(`${API_URL}/post`)
  }

@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom"
 const Navbar = () =>{
   return(
-    <nav className="block w-full max-w-screen-lg px-4 py-2 mx-auto text-white bg-slate-900 shadow-md rounded-md lg:px-8 lg:py-3 mt-10">
-  <div className="container flex flex-wrap items-center justify-between mx-auto text-gray-100">
+   <nav className="w-full bg-slate-900 text-white shadow-md p-4">
+  <div className="container mx-auto flex flex-wrap items-center justify-between text-gray-100 px-4 py-2">
     <a href="#"
       className="mr-4 block cursor-pointer py-1.5 text-base text-gray-200 font-semibold">
       Lost&Foundr
@@ -9,19 +10,19 @@ const Navbar = () =>{
     <div className="hidden lg:block">
       <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
         <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
-          <a href="#" className="flex items-center">
+          <Link to="/" className="flex items-center">
            Home
-          </a>
+          </Link>
         </li>
         <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
-          <a href="#" className="flex items-center">
+          <Link to="add-post" className="flex items-center">
             Add Post
-          </a>
+          </Link>
         </li>
         <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
-          <a href="#" className="flex items-center">
+          <Link href="" className="flex items-center">
             My Post
-          </a>
+          </Link>
         </li>
         <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
           <a href="#" className="flex items-center">

@@ -27,7 +27,7 @@ const AddPost = () =>{
   }
 
   return(
-    <section className="bg-neutral-50 min-h-screen  flex items-center justify-center p-6">
+    <section className=" min-h-screen  flex items-center justify-center p-6">
     <div className="bg-white p-8 rounded-xl  " >
       <h1 className="text-center font-sans text-xl font-semibold p-3">Add Post Lost&Foundr</h1>
       <form className="flex flex-col space-y-6"
@@ -67,7 +67,7 @@ const AddPost = () =>{
       className="border rounded  text-lg font-normal m-2 px-6 py-1"
       onChange={handleInputChange}
       />
-      <button className="m-2 p-2 bg-red-600 text-white hover:pointer hover:bg-red-400 text-lg rounded-xl" 
+      <button className="m-2 p-2 bg-slate-700 text-white hover:pointer hover:bg-slate-500 text-lg rounded-xl" 
       type="submit"
       >
         Post</button>
