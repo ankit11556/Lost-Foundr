@@ -1,4 +1,5 @@
 import LikeButton from "./LikeButton"
+import CommentButton from "./CommentButton"
 const PostCard = ({post})=>{
   return(
   <div className="bg-slate-900 text-white rounded-xl shadow p-5 w-full max-w-[300px] transition-all hover:scale-105 flex flex-col item-between gap-3">
@@ -27,8 +28,9 @@ const PostCard = ({post})=>{
   <p className="text-slate-200">
     Contact: <span className="text-white font-semibold">{post.contactInfo}</span>
   </p>
-  <div>
+  <div className="flex justify-between">
     <LikeButton></LikeButton>
+    <CommentButton></CommentButton>
   </div>
   </div>
   )
