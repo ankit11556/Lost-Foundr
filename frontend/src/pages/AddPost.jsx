@@ -9,7 +9,8 @@ const AddPost = () =>{
     date: "",
     location: "",
     contactInfo: "",
-    postedBy: ""
+    postedBy: "",
+    image: null
   })
 
   const handleInputChange  = (e) =>{
@@ -64,6 +65,10 @@ const AddPost = () =>{
       onChange={handleInputChange}
       />
        <input type="text" placeholder="Enter contact info " name="contactInfo"
+      className="border rounded  text-lg font-normal m-2 px-6 py-1"
+      onChange={handleInputChange}
+      />
+      <input type="file" accept="image/*" name="image" 
       className="border rounded  text-lg font-normal m-2 px-6 py-1"
       onChange={handleInputChange}
       />

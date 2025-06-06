@@ -1,11 +1,11 @@
-import LikeButton from "./LikeButton"
-import CommentButton from "./CommentButton"
+
 import { CiLocationOn } from "react-icons/ci";
 import { IoWalletOutline } from "react-icons/io5";
 import { CiUser } from "react-icons/ci";
 const PostCard = ({post})=>{
   return(
-  <div className="bg-slate-700 text-white flex flex-col max-w-xs md:max-w-md lg:max-w-lg mx-auto px-8 py-4 rounded-2xl w-full h-auto">
+  <div className="max-w-xs md:max-w-md lg:max-w-lg mx-auto w-full h-auto ">
+  <div className="bg-slate-700 text-white flex flex-col  mx-auto px-8 py-4 rounded-2xl w-full h-auto">
   <div className="flex  w-full justify-between py-2 ">
     <span className="text-3xl font-semibold">{post.title}</span>
     
@@ -30,6 +30,7 @@ const PostCard = ({post})=>{
   <div className="flex flex-col gap-1">
     <span>{new Date(post.date).toLocaleDateString()}</span>
     <span>{post.contactInfo}</span>
+  </div>
   </div>
   </div>
   </div>
