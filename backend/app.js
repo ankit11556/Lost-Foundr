@@ -4,7 +4,7 @@ const cors = require('cors')
 require('dotenv').config()
 
 const connectDB = require('./config/db')
-
+app.use('/uploads', express.static('uploads'));
 app.use(express.json())
 app.use(cors({
   credentials: true,

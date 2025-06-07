@@ -1,10 +1,12 @@
 const Post = require("../models/posts");
-
+const path = require('path')
 exports.createPost = async (req,res) => {
   try {
     const {title,status,itemName,date,location,contactInfo,postedBy} = req.body;
+
+    const image = req.file ? req.file.path : null
     
-    const newPost =  new Post({title,status,itemName,date,location,contactInfo,postedBy})
+    const newPost =  new Post({title,status,itemName,date,location,contactInfo,postedBy,image:req.file.path})
 
     await newPost.save()
     res.status(201).json({message: "Post added successfully",data:newPost})
