@@ -1,11 +1,19 @@
-
+const IMAGE_URL = import.meta.env.VITE_SERVER_IMAGE_URL;
 import { CiLocationOn } from "react-icons/ci";
 import { IoWalletOutline } from "react-icons/io5";
 import { CiUser } from "react-icons/ci";
 const PostCard = ({post})=>{
   return(
   <div className="max-w-xs md:max-w-md lg:max-w-lg mx-auto w-full h-auto ">
-  <div className="bg-slate-700 text-white flex flex-col  mx-auto px-8 py-4 rounded-2xl w-full h-auto">
+  <div className="bg-slate-700 text-white flex flex-col md:flex-row mx-auto px-6 py-4 rounded-2xl w-full h-auto">
+
+    <div className="w-full md:w-1/3">
+      <img src={`${IMAGE_URL}/${post.image}`} alt="uploaded" 
+      className="w-full h-full object-cover rounded-xl"
+      />
+    </div>
+    
+    <div className="flex flex-col justify-between w-full md:w-2/3 pl-4">
   <div className="flex  w-full justify-between py-2 ">
     <span className="text-3xl font-semibold">{post.title}</span>
     
@@ -30,6 +38,7 @@ const PostCard = ({post})=>{
   <div className="flex flex-col gap-1">
     <span>{new Date(post.date).toLocaleDateString()}</span>
     <span>{post.contactInfo}</span>
+  </div>
   </div>
   </div>
   </div>

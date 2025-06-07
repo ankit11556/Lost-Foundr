@@ -14,13 +14,30 @@ const AddPost = () =>{
   })
 
   const handleInputChange  = (e) =>{
-   setFormData({...formData,[e.target.name]:e.target.value})
+   const{name,value,files} = e.target;
+
+   if(name === "image"){
+    setFormData({
+      ...formData,
+      [name]:files[0]
+    })
+   } else{
+    setFormData({
+      ...formData,
+      [name]: value
+    })
+   }
   }
 
   const handleSubmit = async(e) =>{
   e.preventDefault();
+
+  const formPayload = new FormData()
+  for(const key in formData){
+    formPayload.append(key,formData[key])
+  }
   try {
-    const res = await addPostApi(formData)
+    const res = await addPostApi(formPayload)
     alert(res.data.message)
   } catch (error) {
     alert(error.res?.data?.message)
