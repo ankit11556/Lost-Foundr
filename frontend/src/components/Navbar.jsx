@@ -9,9 +9,14 @@ const Navbar = () =>{
     </a>
     <div className="hidden lg:block">
       <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-        <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
+         <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
           <Link to="/" className="flex items-center">
            Home
+          </Link>
+        </li>
+        <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
+          <Link to="all-posts" className="flex items-center">
+          All Post
           </Link>
         </li>
         <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
