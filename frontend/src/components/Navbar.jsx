@@ -1,35 +1,35 @@
 import { Link } from "react-router-dom"
 const Navbar = () =>{
   return(
-   <nav className="w-full bg-slate-900 text-white shadow-md p-4">
-  <div className="container mx-auto flex flex-wrap items-center justify-between text-gray-100 px-4 py-2">
+   <nav className="w-full bg-white text-slate-800  shadow-md p-4">
+  <div className="container mx-auto flex flex-wrap items-center justify-between  px-4 py-2">
     <a href="#"
-      className="mr-4 block cursor-pointer py-1.5 text-base text-gray-200 font-semibold">
+      className="mr-4 block cursor-pointer py-1.5   font-semibold text-2xl">
       Lost&Foundr
     </a>
     <div className="hidden lg:block">
       <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-         <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
+         <li className="flex items-center p-1 text-lg gap-x-2  hover:text-indigo-600">
           <Link to="/" className="flex items-center">
            Home
           </Link>
         </li>
-        <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
+        <li className="flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600">
           <Link to="all-posts" className="flex items-center">
           All Post
           </Link>
         </li>
-        <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
+        <li className="flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600">
           <Link to="add-post" className="flex items-center">
             Add Post
           </Link>
         </li>
-        <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
+        <li className="flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600">
           <Link href="" className="flex items-center">
             My Post
           </Link>
         </li>
-        <li className="flex items-center p-1 text-sm gap-x-2 text-gray-200">
+        <li className="flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600">
           <a href="#" className="flex items-center">
             Support
           </a>

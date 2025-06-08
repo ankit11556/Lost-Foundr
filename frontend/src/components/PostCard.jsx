@@ -5,11 +5,11 @@ import { CiUser } from "react-icons/ci";
 const PostCard = ({post})=>{
   return(
   <div className="max-w-xs md:max-w-md lg:max-w-lg mx-auto w-full h-auto ">
-  <div className="bg-slate-700 text-white flex flex-col md:flex-row mx-auto px-6 py-4 rounded-2xl w-full h-auto">
+  <div className="bg-white text-slate-800 shadow-xl flex flex-col md:flex-row mx-auto px-6 py-4 rounded-2xl w-full h-auto">
 
-    <div className="w-full md:w-1/3">
+    <div className="w-full md:w-1/3 p-2 bg-white rounded-3xl shadow-xl border border-slate-300">
       <img src={`${IMAGE_URL}/${post.image}`} alt="uploaded" 
-      className="w-full h-full object-cover rounded-xl"
+      className="w-full h-full object-cover rounded-2xl "
       />
     </div>
     

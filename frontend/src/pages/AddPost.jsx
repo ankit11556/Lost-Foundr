@@ -45,8 +45,8 @@ const AddPost = () =>{
   }
 
   return(
-    <section className=" min-h-screen  flex items-center justify-center p-6">
-    <div className="bg-white p-8 rounded-xl  " >
+    <section className=" min-h-screen  flex items-center justify-center p-6 ">
+    <div className=" p-8   bg-white shadow-md rounded-2xl" >
       <h1 className="text-center font-sans text-xl font-semibold p-3">Add Post Lost&Foundr</h1>
       <form className="flex flex-col space-y-6"
       onSubmit={handleSubmit}>
