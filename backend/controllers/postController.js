@@ -17,9 +17,22 @@ exports.createPost = async (req,res) => {
 
 exports.getPosts = async (req,res) => {
  try {
-  const posts = await Post.find();
-  if(!posts){
-    res.status(401).json({message: "Posts not found"});
+  const {status,itemName} = req.query;
+
+  let filter = {};
+
+  if(status){
+    filter.status = status;
+  }
+
+  if(itemName){
+    filter.itemName = {$regex: itemName, $options: "i"};
+  }
+
+  const posts = await Post.find(filter).sort({date: -1});
+
+  if(!posts || posts.length === 0){
+    res.status(401).json({message: "No matching posts found"});
   }
 
   res.status(200).json({data: posts})
