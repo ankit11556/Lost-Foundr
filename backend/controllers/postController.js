@@ -32,11 +32,11 @@ exports.getPosts = async (req,res) => {
   const posts = await Post.find(filter).sort({date: -1});
 
   if(!posts || posts.length === 0){
-    res.status(401).json({message: "No matching posts found"});
+    res.status(404).json({message: "No matching posts found"});
   }
 
   res.status(200).json({data: posts})
  } catch (error) {
-  res.status(500).josn({error:error.message})
+  res.status(500).json({error:error.message})
  } 
 }
