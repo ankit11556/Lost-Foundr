@@ -6,6 +6,16 @@
   return await axios.post(`${API_URL}/post/add`,data)
  }
 
- export const getPostApi = async()=>{
-  return await axios.get(`${API_URL}/post`)
+ export const getPostApi = async(status,itemName)=>{
+ let url = `${API_URL}/post?`;
+
+ if(status){
+  url += `status=${status}&`
+ }
+
+ if (itemName) {
+  url += `itemName=${itemName}`
+ }
+
+ return await axios.get(url)
  }
