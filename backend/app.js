@@ -12,7 +12,10 @@ app.use(cors({
 }))
 
 const postRoute = require('./routes/postRoute')
+const authRoute = require('./routes/authRoutes')
+
 app.use("/api/post",postRoute)
+app.use("/api/auth",authRoute)
 
 const PORT = process.env.PORT;
 connectDB().then(()=>{
