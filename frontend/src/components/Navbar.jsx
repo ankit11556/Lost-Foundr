@@ -2,13 +2,15 @@ import { Link } from "react-router-dom"
 const Navbar = () =>{
   return(
    <nav className="w-full bg-white text-slate-800  shadow-md p-4">
-  <div className="container mx-auto flex flex-wrap items-center justify-between  px-4 py-2">
+  <div className="container mx-auto flex flex-wrap flex-row items-center justify-between  px-4 py-2 w-full">
     <a href="#"
       className="mr-4 block cursor-pointer py-1.5   font-semibold text-2xl">
       Lost&Foundr
     </a>
-    <div className="hidden lg:block">
-      <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    
+    <div className="  lg:block hidden">
+      <div className="flex w-full flex-row ">
+      <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 ">
          <li className="flex items-center p-1 text-lg gap-x-2  hover:text-indigo-600">
           <Link to="/" className="flex items-center">
            Home
@@ -29,13 +31,16 @@ const Navbar = () =>{
             My Post
           </Link>
         </li>
-        <li className="flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600">
-          <a href="#" className="flex items-center">
-            Support
-          </a>
-        </li>
+       
       </ul>
+     
+      <div className="ml-20">
+      <button className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded font-medium text-lg hover:cursor-pointer ">
+       <Link to="/login">Login</Link> 
+      </button>
     </div>
+    </div>
+     </div>
     <button
       className="relative ml-auto h-6 max-h-[40px] w-6 max-w-[40px] select-none rounded-lg text-center align-middle text-xs font-medium uppercase text-inherit transition-all hover:bg-transparent focus:bg-transparent active:bg-transparent disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:hidden"
       type="button">

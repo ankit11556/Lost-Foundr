@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import HomePage from "../pages/HomePage";
 import AllPost from "../pages/AllPost";
 import Signup from "../pages/SignupPage";
+import Login from "../pages/LoginPage";
 const AppRoutes = () =>{
   return(
     <>
@@ -13,7 +14,8 @@ const AppRoutes = () =>{
       <Route path="all-posts" element={<AllPost/>}></Route>
       <Route path="add-post" element={<AddPost/>}></Route>
       <Route path="my-post"></Route>
-       <Route path="signup" element={<Signup/>}></Route>
+      <Route path="signup" element={<Signup/>}></Route>
+      <Route path="login" element={<Login/>}></Route>
     </Routes>
     </>
   )
