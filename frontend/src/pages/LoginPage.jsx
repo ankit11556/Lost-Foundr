@@ -11,11 +11,11 @@ const Login = () =>{
               <form className="space-y-4 md:space-y-6" >
                 
                   <div>
-                      <label for="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
+                      <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
                       <input type="email" name="email" className="bg-gray-50 border border-gray-300  text-sm rounded-lg   block w-full p-2.5" placeholder="name@company.com" required/>
                   </div>
                   <div>
-                      <label for="password" className="block mb-2 text-sm font-medium ">Password</label>
+                      <label htmlFor="password" className="block mb-2 text-sm font-medium ">Password</label>
                       <input type="password" name="password"  placeholder="••••••••" className="bg-gray-50 border border-gray-300  text-sm rounded-lg block w-full p-2.5" required/>
                   </div>
                  
@@ -32,3 +32,4 @@ const Login = () =>{
 }
 
 export default Login
+
