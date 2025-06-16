@@ -1,5 +1,6 @@
 const User = require("../models/user");
-
+const generateToken = require('../utils/generateToken')    
+const generateCookie = require('../utils/generateCookies')
 exports.registerUser = async (req,res) => {
   try {
     const {name,email,password} = req.body;
@@ -37,9 +38,14 @@ exports.loginUser = async (req,res) => {
       return res.status(401).json({message: 'Invalid credentials'})
     }
 
+    const {accessToken,refreshToken}  =  generateToken(user._id)   
+    
+    generateCookie(res,accessToken,refreshToken)
+
     res.status(200).json({message: "Login successfull",
       user:{
-        email: user.email
+        email: user.email,
+        userId: user._id
       }
     })
   } catch (error) {
