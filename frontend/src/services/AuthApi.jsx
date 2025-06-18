@@ -7,5 +7,7 @@ export const signupApi = async (data) => {
 }
 
 export const loginApi = async (data) => {
-  return await axios.post(`${API_URL}/auth/login`,data)
+  return await axios.post(`${API_URL}/auth/login`,data,
+    {withCredentials: true}
+  )
 }

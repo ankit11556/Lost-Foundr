@@ -3,7 +3,10 @@
  
  
  export const addPostApi = async (data) => {
-  return await axios.post(`${API_URL}/post/add`,data)
+  return await axios.post(`${API_URL}/post/add`,data,
+     {withCredentials: true}
+  )
+   
  }
 
  export const getPostApi = async(status,itemName)=>{
