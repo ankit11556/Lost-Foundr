@@ -51,7 +51,7 @@ const AddPost = () =>{
       <form className="flex flex-col space-y-6"
       onSubmit={handleSubmit}>
 
-      <input type="text" placeholder="Enter title " name="title"
+      <input type="text" placeholder="Enter title " name="title" required
       className="border rounded  text-lg font-normal m-2  px-6 py-1"
       onChange={handleInputChange}
       />
@@ -64,28 +64,28 @@ const AddPost = () =>{
           <option value="found">Found</option>
         </select>
 
-        <input type="text" placeholder="Enter item name " name="itemName"
+        <input type="text" placeholder="Enter item name " name="itemName" required
       className="border rounded  text-lg font-normal m-2  px-6 py-1"
       onChange={handleInputChange}
       />
        
-      <input type="date"  name="date"
+      <input type="date"  name="date" required
       className="border rounded  text-lg font-normal m-2 px-6 py-1"
       onChange={handleInputChange}
       />
-       <input type="text" placeholder="Enter location " name="location"
+       <input type="text" placeholder="Enter location " name="location" required
       className="border rounded  text-lg font-normal m-2 px-6 py-1"
       onChange={handleInputChange}
       />
-       <input type="text" placeholder="posted by " name="postedBy"
+       <input type="text" placeholder="posted by " name="postedBy" required
       className="border rounded  text-lg font-normal m-2 px-6 py-1"
       onChange={handleInputChange}
       />
-       <input type="text" placeholder="Enter contact info " name="contactInfo"
+       <input type="text" placeholder="Enter contact info " name="contactInfo" required
       className="border rounded  text-lg font-normal m-2 px-6 py-1"
       onChange={handleInputChange}
       />
-      <input type="file" accept="image/*" name="image" 
+      <input type="file" accept="image/*" name="image"  required
       className="border rounded  text-lg font-normal m-2 px-6 py-1"
       onChange={handleInputChange}
       />
