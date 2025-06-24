@@ -6,7 +6,4 @@ const {protectRoutes} = require('../middlewares/authMiddleware')
 
 router.post("/add",protectRoutes,upload.single('image'),createPost)
 router.get("/",getPosts)
-router.get("check-auth",protectRoutes,(req,res)=>{
-  res.json({user: req.user})
-})
 module.exports = router
