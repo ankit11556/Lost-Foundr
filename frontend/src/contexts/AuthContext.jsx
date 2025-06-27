@@ -1,6 +1,6 @@
 import { checkAuthApi } from "../services/AuthApi";
 
-const { createContext, useEffect, useContext } = require("react");
+import { createContext, useEffect, useContext,useState }  from 'react';
 
 const AuthContext = createContext();
 
@@ -13,7 +13,7 @@ const AuthContext = createContext();
    const checkAuth = async () => {
       try {
          const res = await checkAuthApi();
-         isAutheticated(true)
+         setIsAutheticated(true)
          setUser(res.data.user)
       } catch (error) {
         setIsAutheticated(false)
