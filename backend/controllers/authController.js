@@ -1,6 +1,8 @@
 const User = require("../models/user");
 const generateToken = require('../utils/generateToken')    
 const generateCookie = require('../utils/generateCookies')
+
+// user signup
 exports.registerUser = async (req,res) => {
   try {
     const {name,email,password} = req.body;
@@ -24,6 +26,7 @@ exports.registerUser = async (req,res) => {
   }
 }
 
+//user login
 exports.loginUser = async (req,res) => {
   try {
     const {email,password} = req.body
@@ -51,4 +54,20 @@ exports.loginUser = async (req,res) => {
   } catch (error) {
     res.status(500).json({message: "Login failed", error: error.message})
   }
+}
+
+//logout
+exports.logoutUser =  (req,res) => {
+  res.clearCookie("access_token",{
+    httpOnly: true,
+    secure: true,
+    sameSite: "Strict"
+  });
+
+  res.clearCookie("refresh_token",{
+    httpOnly: true,
+    secure: true,
+    sameSite: "Strict"
+  })
+  return res.status(200).json({message: "Logged out successfully"})
 }
