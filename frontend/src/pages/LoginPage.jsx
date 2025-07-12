@@ -1,7 +1,14 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { loginApi } from "../services/AuthApi"
+import { useAuth } from "../contexts/AuthContext"
 const Login = () =>{
+
+    const {setIsAutheticated,setUser} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/"
 
     const [loginFormData,setLoginFormData] = useState({
         email: "",
@@ -21,6 +28,10 @@ const Login = () =>{
         try {
             const response = await loginApi(loginFormData)
             alert(response.data.message)
+            setIsAutheticated(true)
+            setUser(response.data.user)
+
+            navigate(from,{replace:true});
         } catch (error) {
             alert(error.response?.data?.message)
         }
