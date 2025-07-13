@@ -9,6 +9,8 @@ const Login = () =>{
     const location = useLocation();
 
     const from = location.state?.from?.pathname || "/"
+    
+    
 
     const [loginFormData,setLoginFormData] = useState({
         email: "",

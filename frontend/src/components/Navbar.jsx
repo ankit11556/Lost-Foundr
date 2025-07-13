@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
+import { useAuth } from "../contexts/AuthContext"
 const Navbar = () =>{
+  const {user,userLogout} = useAuth()
   return(
    <nav className="w-full bg-white text-slate-800  shadow-md p-4">
   <div className="container mx-auto flex flex-wrap flex-row items-center justify-between  px-4 py-2 w-full">
@@ -35,9 +37,17 @@ const Navbar = () =>{
       </ul>
      
       <div className="ml-20">
-      <button className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded font-medium text-lg hover:cursor-pointer ">
-       <Link to="/login">Login</Link> 
+        { user ?(
+     <button className="bg-red-600 hover:bg-red-700 text-white p-2 rounded font-medium text-lg hover:cursor-pointer "
+     onClick={userLogout}
+       >
+      Logout
       </button>
+        ):(
+         <button className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded font-medium text-lg hover:cursor-pointer ">
+       <Link to="/login">Login</Link> 
+      </button> 
+        )}
     </div>
     </div>
      </div>

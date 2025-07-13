@@ -17,3 +17,9 @@ export const checkAuthApi = async () => {
     {withCredentials: true}
   )
 }
+
+export const logoutApi = async () => {
+  return await axios.get(`${API_URL}/auth/logout`,
+    {withCredentials: true}
+  )
+}

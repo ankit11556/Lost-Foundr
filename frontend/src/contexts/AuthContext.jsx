@@ -1,4 +1,4 @@
-import { checkAuthApi } from "../services/AuthApi";
+import { checkAuthApi, logoutApi } from "../services/AuthApi";
 
 import { createContext, useEffect, useContext,useState }  from 'react';
 
@@ -15,6 +15,10 @@ const AuthContext = createContext();
          const res = await checkAuthApi();
          setIsAutheticated(true)
          setUser(res.data.user)
+         console.log(res.data.user);
+         console.log(res.data);
+         
+         
       } catch (error) {
         setIsAutheticated(false)
         setUser(null)
@@ -25,8 +29,19 @@ const AuthContext = createContext();
    checkAuth()
   },[])
 
+  const userLogout = async () => {
+    try {
+      const res = await logoutApi();
+      setUser(null);
+      setIsAutheticated(false)
+      alert(res.data.message)
+    } catch (error) {
+      alert("Logout faild, Please try again")
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{isAutheticated,setIsAutheticated,user,setUser,loading}}>
+    <AuthContext.Provider value={{isAutheticated,setIsAutheticated,user,setUser,loading,userLogout}}>
       {children}
     </AuthContext.Provider>
   )
