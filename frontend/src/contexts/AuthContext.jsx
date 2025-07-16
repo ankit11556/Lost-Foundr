@@ -15,10 +15,6 @@ const AuthContext = createContext();
          const res = await checkAuthApi();
          setIsAutheticated(true)
          setUser(res.data.user)
-         console.log(res.data.user);
-         console.log(res.data);
-         
-         
       } catch (error) {
         setIsAutheticated(false)
         setUser(null)
