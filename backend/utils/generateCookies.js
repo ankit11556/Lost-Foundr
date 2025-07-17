@@ -2,12 +2,12 @@ const generateCookie = (res,accessToken,refreshToken) =>{
   
 const options = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
+  secure: false,
   sameSite: "lax"
 };
 res.cookie("access_token",accessToken,{
   ...options,
-  maxAge: 15*60*100
+  maxAge: 10 * 1000 
 });
 
 res.cookie("refresh_token",refreshToken,{

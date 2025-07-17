@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const generateToken = require('../utils/generateToken')    
 const generateCookie = require('../utils/generateCookies');
-const { decode } = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 // user signup
 exports.registerUser = async (req,res) => {
@@ -75,18 +75,17 @@ exports.logoutUser =  (req,res) => {
 
 //refresh access token
 exports.refreshAccessToken = (req,res) =>{
-  const refreshToken = req.cookies.refresh_token;
-
+  const refreshToken = req.cookies.refresh_token;  
   if(!refreshToken){
     return res.status(401).json({message: "No refresh token"})
   }
 
   jwt.verify(refreshToken,process.env.REFRESH_TOKEN_KEY,(err,decoded)=>{
     if(err) return res.status(403).json({message: "Invalid refresh token"})
-
+      
       const {accessToken,refreshToken:newRefreshToken} = generateToken(decoded.userId)
       generateCookie(res,accessToken,newRefreshToken)
 
-      res.json({message: "Access token refreshed"})
+      res.status(200).json({message: "Access token refreshed"})
   })
 }
