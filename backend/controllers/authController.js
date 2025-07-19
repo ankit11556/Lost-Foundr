@@ -2,6 +2,8 @@ const User = require("../models/user");
 const generateToken = require('../utils/generateToken')    
 const generateCookie = require('../utils/generateCookies');
 const jwt = require("jsonwebtoken");
+const generateEmailVerificationToken = require('../utils/generateEmailToken')
+const sendEmail = require('../services/emailService')
 
 // user signup
 exports.registerUser = async (req,res) => {
@@ -16,7 +18,19 @@ exports.registerUser = async (req,res) => {
     const newUser = new User({name, email, password});
     await newUser.save()
 
-    res.status(201).json({message: "User registered successfully",
+    const emailToken = generateEmailVerificationToken(newUser._id)
+    // console.log("email token",emailToken);
+    const verifyLink = `${process.env.CLIENT_URL}/verify-email?token=${emailToken}`
+
+    // console.log("verify link",verifyLink);
+    await sendEmail(
+      newUser.email,
+      "Verify your email",
+      `<h3>Click to verify your email:</h3>
+      <a hrerf="${verifyLink}" target="_blank" style="padding:10px 15px;background:#4CAF50;color:white;text-decoration:none;border-radius:5px;display:inline-block;">Click Here to Verify</a>`
+    )
+
+    res.status(201).json({message: "Signup successful. Please verify your email to activate your account",
       user:{
         _id: newUser._id,
         email: newUser.email
@@ -88,4 +102,33 @@ exports.refreshAccessToken = (req,res) =>{
 
       res.status(200).json({message: "Access token refreshed"})
   })
+}
+
+//verify email
+exports.verifyEmail = async (req,res) => {
+  const {token} = req.body;
+
+  if(!token){
+    return res.status(400).json({message: "invalid token"})
+  }
+
+  try {
+    const decoded = jwt.verify(token,process.env.JWT_EMAIL_SECRET_KEY);
+    const user = await User.findById(decoded.userId)
+
+    if(!user){
+      return res.status(404).json({message: "user not found"})
+    }
+
+    if(user.isVerified){
+      return res.status(400).json({message: "Email already verified"})
+    }
+
+    user.isVerified = true;
+    await user.save();
+
+    return res.status(200).json({message: "Email verified successfully"})
+  } catch (error) {
+    return res.status(400).json({message: "Token expiried or invalid"})
+  }
 }

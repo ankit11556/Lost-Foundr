@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 const generateEmailVerificationToken = (userId)=>{
   try {
-    jwt.sign(
+   return jwt.sign(
       {userId},
       process.env.JWT_EMAIL_SECRET_KEY,
       {expiresIn: '10m'}
