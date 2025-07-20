@@ -6,6 +6,7 @@ import AllPost from "../pages/AllPost";
 import Signup from "../pages/SignupPage";
 import Login from "../pages/LoginPage";
 import PrivateRoute from "../components/PrivateRoute";
+import VerifyEmail from "../pages/VerifyEmail";
 const AppRoutes = () =>{
   return(
     <>
@@ -16,6 +17,7 @@ const AppRoutes = () =>{
        <Route element={<PrivateRoute/>}>
         <Route path="add-post" element={<AddPost/>}></Route>
        </Route>
+       <Route path="verify-email" element={<VerifyEmail/>}></Route>
       <Route path="my-post"></Route>
       <Route path="signup" element={<Signup/>}></Route>
       <Route path="login" element={<Login/>}></Route>

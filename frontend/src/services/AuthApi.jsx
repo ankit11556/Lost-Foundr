@@ -15,3 +15,7 @@ export const checkAuthApi = async () => {
 export const logoutApi = async () => {
   return await axiosInstance.get(`/auth/logout`)
 }
+
+export const emailVerifyApi = async () => {
+  return await axiosInstance.post(`/auth/verify-email`)
+}
