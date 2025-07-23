@@ -27,7 +27,7 @@ exports.registerUser = async (req,res) => {
       newUser.email,
       "Verify your email",
       `<h3>Click to verify your email:</h3>
-      <a hrerf="${verifyLink}" target="_blank" style="padding:10px 15px;background:#4CAF50;color:white;text-decoration:none;border-radius:5px;display:inline-block;">Click Here to Verify</a>`
+      <a href="${verifyLink}" target="_blank" style="padding:10px 15px;background:#4CAF50;color:white;text-decoration:none;border-radius:5px;display:inline-block;">Click Here to Verify</a>`
     )
 
     res.status(201).json({message: "Signup successful. Please verify your email to activate your account",
@@ -47,8 +47,13 @@ exports.loginUser = async (req,res) => {
     const {email,password} = req.body
 
     const user = await User.findOne({email}).select('+password');
-    if (!user) {
-      return res.status(401).json({message: 'Invalid credentials'})
+
+     if (!user) {
+      return res.status(401).json({message: 'User not found. Please sign up first.'})
+    }
+
+    if (!user.isVerified) {
+      return res.status(401).json({message: "Please first verify your email"})
     }
 
     const isMatch = await user.isValidPassword(password)
@@ -100,7 +105,9 @@ exports.refreshAccessToken = (req,res) =>{
       const {accessToken,refreshToken:newRefreshToken} = generateToken(decoded.userId)
       generateCookie(res,accessToken,newRefreshToken)
 
-      res.status(200).json({message: "Access token refreshed"})
+     
+
+      res.status(200).json({message: "Access token refreshed",accessToken})
   })
 }
 
