@@ -10,8 +10,6 @@ const Login = () =>{
 
     const from = location.state?.from?.pathname || "/"
     
-    
-
     const [loginFormData,setLoginFormData] = useState({
         email: "",
         password: ""
@@ -32,7 +30,7 @@ const Login = () =>{
             alert(response.data.message)
             setIsAutheticated(true)
             setUser(response.data.user)
-
+            // setLoading(false)
             navigate(from,{replace:true});
         } catch (error) {
             alert(error.response?.data?.message)
@@ -67,6 +65,8 @@ const Login = () =>{
                   <p className="text-sm text-black">
                       Don’t have an account yet? <Link to="/signup" className="font-medium text-blue-600 hover:underline ">Sign up</Link>
                   </p>
+
+                  <button>sign in with google</button>
               </form>
           </div>
       </div>
