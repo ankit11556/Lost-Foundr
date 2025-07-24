@@ -4,7 +4,8 @@ const generateCookie = require('../utils/generateCookies');
 const jwt = require("jsonwebtoken");
 const generateEmailVerificationToken = require('../utils/generateEmailToken')
 const sendEmail = require('../services/emailService')
-
+const {oauth2client} = require('../utils/googleConfig')
+const axios = require('axios')
 // user signup
 exports.registerUser = async (req,res) => {
   try {
@@ -105,8 +106,6 @@ exports.refreshAccessToken = (req,res) =>{
       const {accessToken,refreshToken:newRefreshToken} = generateToken(decoded.userId)
       generateCookie(res,accessToken,newRefreshToken)
 
-     
-
       res.status(200).json({message: "Access token refreshed",accessToken})
   })
 }
@@ -137,5 +136,45 @@ exports.verifyEmail = async (req,res) => {
     return res.status(200).json({message: "Email verified successfully"})
   } catch (error) {
     return res.status(400).json({message: "Token expiried or invalid"})
+  }
+}
+
+//google login
+exports.googleLogin = async(req,res) =>{
+  try {
+    const {code} = req.query;
+    const {tokens} = await oauth2client.getToken(code);
+    oauth2client.setCredentials(googleRes.tokens);
+
+    const userRes = await axios.get(process.env.GOOGLE_AUTH_URI,{
+      headers:{
+        Authorization: `Bearer ${tokens.access_token}`
+      }
+    });
+
+    const {email, name} = userRes.data;
+
+    let user = await User.findOne({email})
+
+    if (!user) {
+      user = new User({name,email,isVerified: true});
+      await user.save()
+    }
+
+    const {accessToken,refreshToken}  =  generateToken(user._id)   
+    generateCookie(res,accessToken,refreshToken)
+
+    return res.status(200).json({
+      message: "Login successfull",
+      user:{
+        userId: user._id,
+        email: user.email,
+        name: user.name,
+        authType: 'google'
+      }
+    })
+  } catch (error) {
+    console.error("Google Login Error:",error)
+    return  res.status(500).json({message: "Google login failed"})
   }
 }
