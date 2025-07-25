@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import { googleAuthApi, loginApi } from "../services/AuthApi"
+import {  loginApi } from "../services/AuthApi"
 import { useAuth } from "../contexts/AuthContext"
-import {useGoogleLogin} from "@react-oauth/google"
+import GoogleLogin from "../components/GoogleLogin"
 const Login = () =>{
 
     const {setIsAutheticated,setUser} = useAuth();
@@ -37,25 +37,25 @@ const Login = () =>{
         }
     }
     
-    const responseGoogle = async (authResult) => {
-        try {
-            if(authResult['code']){
-              const result = await googleAuthApi(authResult['code'])
-               setIsAutheticated(true); // login ho gaya
-               setUser(result.data.user)
-               navigate(from, { replace: true });
-            }
-        } catch (error) {
-            console.error('error while req',error);
+    // const responseGoogle = async (authResult) => {
+    //     try {
+    //         if(authResult['code']){
+    //           const result = await googleAuthApi(authResult['code'])
+    //            setIsAutheticated(true); // login ho gaya
+    //            setUser(result.data.user)
+    //            navigate(from, { replace: true });
+    //         }
+    //     } catch (error) {
+    //         console.error('error while req',error);
             
-        }
-    }
+    //     }
+    // }
 
-    const googleLogin = useGoogleLogin({
-        onSuccess: responseGoogle,
-        onError: responseGoogle,
-        flow: 'auth-code'
-    })
+    // const googleLogin = useGoogleLogin({
+    //     onSuccess: responseGoogle,
+    //     onError: responseGoogle,
+    //     flow: 'auth-code'
+    // })
 
   return(
     <section>
@@ -85,7 +85,7 @@ const Login = () =>{
                       Don’t have an account yet? <Link to="/signup" className="font-medium text-blue-600 hover:underline ">Sign up</Link>
                   </p>
 
-                    <button
+                    {/* <button
                       type="button"
                       className="w-full flex items-center justify-center gap-2 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-red-500 text-white hover:bg-red-400 hover:cursor-pointer"
                       onClick={() => googleLogin()}
@@ -98,8 +98,8 @@ const Login = () =>{
                      />
                     </span>
                    Sign in with Google
-                 </button>
-
+                 </button> */}
+               <GoogleLogin></GoogleLogin>
               </form>
           </div>
       </div>
