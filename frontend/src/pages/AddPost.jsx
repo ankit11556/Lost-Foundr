@@ -45,57 +45,94 @@ const AddPost = () =>{
   }
 
   return(
-    <section className=" min-h-screen  flex items-center justify-center p-6 ">
-    <div className=" p-8   bg-white shadow-md rounded-2xl" >
-      <h1 className="text-center font-sans text-xl font-semibold p-3">Add Post Lost&Foundr</h1>
-      <form className="flex flex-col space-y-6"
-      onSubmit={handleSubmit}>
+   <section className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+  <div className="w-full max-w-xl bg-white shadow-xl rounded-2xl p-8 space-y-6">
+    <h1 className="text-3xl font-bold text-center text-gray-800">📢 Add Lost & Found Post</h1>
 
-      <input type="text" placeholder="Enter title " name="title" required
-      className="border rounded  text-lg font-normal m-2  px-6 py-1"
-      onChange={handleInputChange}
-      />
-        <select className="border rounded  text-lg font-normal m-2 px-6 py-1"
-        name="status"
+    <form className="space-y-4" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="title"
+        placeholder="Post Title"
+        required
         onChange={handleInputChange}
-        >
-          <option value="">select</option>
-          <option value="lost">Lost</option>
-          <option value="found">Found</option>
-        </select>
+        className="w-full px-5 py-3 border border-gray-300 rounded-xl text-gray-800 focus:ring-2 focus:ring-blue-400 outline-none"
+      />
 
-        <input type="text" placeholder="Enter item name " name="itemName" required
-      className="border rounded  text-lg font-normal m-2  px-6 py-1"
-      onChange={handleInputChange}
-      />
-       
-      <input type="date"  name="date" required
-      className="border rounded  text-lg font-normal m-2 px-6 py-1"
-      onChange={handleInputChange}
-      />
-       <input type="text" placeholder="Enter location " name="location" required
-      className="border rounded  text-lg font-normal m-2 px-6 py-1"
-      onChange={handleInputChange}
-      />
-       <input type="text" placeholder="posted by " name="postedBy" required
-      className="border rounded  text-lg font-normal m-2 px-6 py-1"
-      onChange={handleInputChange}
-      />
-       <input type="text" placeholder="Enter contact info " name="contactInfo" required
-      className="border rounded  text-lg font-normal m-2 px-6 py-1"
-      onChange={handleInputChange}
-      />
-      <input type="file" accept="image/*" name="image"  required
-      className="border rounded  text-lg font-normal m-2 px-6 py-1"
-      onChange={handleInputChange}
-      />
-      <button className="m-2 p-2 bg-slate-700 text-white hover:pointer hover:bg-slate-500 text-lg rounded-xl" 
-      type="submit"
+      <select
+        name="status"
+        required
+        onChange={handleInputChange}
+        className="w-full px-5 py-3 border border-gray-300 rounded-xl text-gray-800 bg-white focus:ring-2 focus:ring-blue-400 outline-none"
       >
-        Post</button>
-      </form>
-    </div>
-    </section>
+        <option value="">Select Status</option>
+        <option value="lost">🔍 Lost</option>
+        <option value="found">📦 Found</option>
+      </select>
+
+      <input
+        type="text"
+        name="itemName"
+        placeholder="Item Name"
+        required
+        onChange={handleInputChange}
+        className="w-full px-5 py-3 border border-gray-300 rounded-xl text-gray-800 focus:ring-2 focus:ring-blue-400 outline-none"
+      />
+
+      <input
+        type="date"
+        name="date"
+        required
+        onChange={handleInputChange}
+        className="w-full px-5 py-3 border border-gray-300 rounded-xl text-gray-800 focus:ring-2 focus:ring-blue-400 outline-none"
+      />
+
+      <input
+        type="text"
+        name="location"
+        placeholder="Location"
+        required
+        onChange={handleInputChange}
+        className="w-full px-5 py-3 border border-gray-300 rounded-xl text-gray-800 focus:ring-2 focus:ring-blue-400 outline-none"
+      />
+
+      <input
+        type="text"
+        name="postedBy"
+        placeholder="Posted By"
+        required
+        onChange={handleInputChange}
+        className="w-full px-5 py-3 border border-gray-300 rounded-xl text-gray-800 focus:ring-2 focus:ring-blue-400 outline-none"
+      />
+
+      <input
+        type="text"
+        name="contactInfo"
+        placeholder="Contact Info (Phone / Email)"
+        required
+        onChange={handleInputChange}
+        className="w-full px-5 py-3 border border-gray-300 rounded-xl text-gray-800 focus:ring-2 focus:ring-blue-400 outline-none"
+      />
+
+      <input
+        type="file"
+        name="image"
+        accept="image/*"
+        required
+        onChange={handleInputChange}
+        className="w-full px-5 py-3 border border-gray-300 rounded-xl text-gray-800 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+      />
+
+      <button
+        type="submit"
+        className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-500 transition-all duration-300 font-semibold text-lg"
+      >
+        📤 Post Now
+      </button>
+    </form>
+  </div>
+</section>
+
   )
 }
 
