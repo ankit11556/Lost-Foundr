@@ -19,3 +19,7 @@ export const logoutApi = async () => {
 export const emailVerifyApi = async (token) => {
   return await axiosInstance.post(`/auth/verify-email`,{token:token})
 }
+
+export const googleAuthApi = async (code) => {
+  return await axiosInstance.get(`auth/google?code=${code}`)
+}

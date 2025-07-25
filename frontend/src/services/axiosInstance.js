@@ -7,10 +7,9 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-// OPTIONAL: Set access token before request
 axiosInstance.interceptors.request.use((config) => {
-  const accessToken = localStorage.getItem("access_token"); // or use cookie if you're storing it
-  if (accessToken) {
+  const accessToken = localStorage.getItem("access_token");
+  if (accessToken && typeof accessToken === "string") {
     config.headers["Authorization"] = `Bearer ${accessToken}`;
   }
   return config;
@@ -21,36 +20,32 @@ axiosInstance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    
     if (
       (error.response?.status === 401 || error.response?.status === 403) &&
       !originalRequest._retry &&
       !originalRequest.url.includes("/auth/refresh-token")
     ) {
       originalRequest._retry = true;
-      try {
-        console.log("Trying to refresh token...");
 
+      try {
         const res = await axios.get(`${API_URL}/auth/refresh-token`, {
           withCredentials: true,
         });
 
         const newAccessToken = res.data.accessToken;
 
-        // ✅ Save token
-        localStorage.setItem("access_token", newAccessToken);
-
-        //  Add to retry request
-        originalRequest.headers = originalRequest.headers || {};
-        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-
-        return axiosInstance(originalRequest);
+        if (newAccessToken) {
+          localStorage.setItem("access_token", newAccessToken);
+          originalRequest.headers = {
+            ...originalRequest.headers,
+            Authorization: `Bearer ${newAccessToken}`,
+          };
+          return axiosInstance(originalRequest);
+        }
       } catch (refreshError) {
-        console.error("Token refresh failed:", refreshError.message);
+        localStorage.removeItem("access_token");
 
-        //  Avoid infinite redirect loops
         if (window.location.pathname !== "/login") {
-          localStorage.removeItem("access_token");
           window.location.href = "/login";
         }
 
@@ -61,6 +56,5 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
 
 export default axiosInstance;

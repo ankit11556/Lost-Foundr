@@ -14,8 +14,15 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: function(){
+      return this.authType === 'email';
+    },
     select: false
+  },
+  authType: {
+    type: String,
+    enum: ['email','google'],
+    default: 'email'
   },
   isVerified: {
     type: Boolean,

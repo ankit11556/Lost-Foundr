@@ -11,5 +11,5 @@ router.get("/check-auth",protectRoutes,(req,res)=>{
 router.get("/logout",logoutUser)
 router.get("/refresh-token",refreshAccessToken)
 router.post("/verify-email",verifyEmail)
-router.post("/google",googleLogin)
+router.get("/google",googleLogin)
 module.exports = router

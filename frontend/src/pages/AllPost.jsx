@@ -3,7 +3,15 @@ import { getPostApi } from "../services/Api";
 import PostCard from "../components/PostCard";
 import { useEffect } from "react";
 import Filter from "../components/Filter";
+import { useAuth } from "../contexts/AuthContext";
 const AllPost = () =>{
+
+  const { loading } = useAuth();   
+
+  if (loading) {
+    return <div>Loading...</div>; // ya spinner
+  }
+
   const [posts,setPosts] = useState([]);
 
   const [status,setStatus] = useState('');

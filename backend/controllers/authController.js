@@ -144,7 +144,7 @@ exports.googleLogin = async(req,res) =>{
   try {
     const {code} = req.query;
     const {tokens} = await oauth2client.getToken(code);
-    oauth2client.setCredentials(googleRes.tokens);
+    oauth2client.setCredentials(tokens);
 
     const userRes = await axios.get(process.env.GOOGLE_AUTH_URI,{
       headers:{
@@ -157,7 +157,7 @@ exports.googleLogin = async(req,res) =>{
     let user = await User.findOne({email})
 
     if (!user) {
-      user = new User({name,email,isVerified: true});
+      user = await User({name,email,isVerified: true,authType: 'google'});
       await user.save()
     }
 
