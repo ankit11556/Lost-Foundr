@@ -45,7 +45,7 @@ const AddPost = () =>{
   }
 
   return(
-   <section className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+   <section className="min-h-screen  flex items-center justify-center p-6">
   <div className="w-full max-w-xl bg-white shadow-xl rounded-2xl p-8 space-y-6">
     <h1 className="text-3xl font-bold text-center text-gray-800">📢 Add Lost & Found Post</h1>
 
