@@ -3,10 +3,10 @@ import { useAuth } from "../contexts/AuthContext"
 const Navbar = () =>{
   const {user,userLogout} = useAuth()
   return(
-   <nav className="w-full bg-white text-slate-800  shadow-md p-4">
+   <nav className="w-full bg-white text-slate-800  shadow-sm py-4 px-6 transition duration-200">
   <div className="container mx-auto flex flex-wrap flex-row items-center justify-between  px-4 py-2 w-full">
     <a href="#"
-      className="mr-4 block cursor-pointer py-1.5   font-semibold text-2xl">
+      className="mr-4 block cursor-pointer py-1.5   font-bold text-2xl">
       Lost&Foundr
     </a>
     
