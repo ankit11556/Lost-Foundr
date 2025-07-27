@@ -1,16 +1,14 @@
- import axios from "axios"
- const API_URL = import.meta.env.VITE_SERVER_API_URL;
- 
- 
+import axiosInstance from "./axiosInstance"
+
  export const addPostApi = async (data) => {
-  return await axios.post(`${API_URL}/post/add`,data,
+  return await axiosInstance.post(`/post/add`,data,
      {withCredentials: true}
   )
    
  }
 
- export const getPostApi = async(status,itemName)=>{
- let url = `${API_URL}/post?`;
+ export const getPostApi = async(status,itemName,limit)=>{
+ let url = `/post?`;
 
  if(status){
   url += `status=${status}&`
@@ -20,5 +18,9 @@
   url += `itemName=${itemName}`
  }
 
- return await axios.get(url)
+ if (limit) {
+    url += `limit=${limit}`;
+  }
+
+ return await axiosInstance.get(url)
  }

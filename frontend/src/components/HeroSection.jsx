@@ -19,15 +19,14 @@ const HeroSection = () => {
         Help reunite people with what matters.
       </p>
      
-     <div className="flex justify-center">
-      <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl text-lg flex items-center justify-center gap-2 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
-        
-        <Plus className="w-5 h-5" />
-        <Link to="/add-post">
-        Add a Post
-        </Link>
-      </button>
-      </div>
+     <div className="text-center">
+            <Link
+              to="/all-posts"
+              className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-500 transition duration-200"
+            >
+              See All Posts
+            </Link>
+          </div>
       
     </section>
   );

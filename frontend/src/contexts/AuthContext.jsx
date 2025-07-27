@@ -30,6 +30,8 @@ const AuthContext = createContext();
       const res = await logoutApi();
       setUser(null);
       setIsAutheticated(false)
+      localStorage.removeItem("access_token");
+      window.location.href = "/login"; 
       alert(res.data.message)
     } catch (error) {
       alert("Logout faild, Please try again")

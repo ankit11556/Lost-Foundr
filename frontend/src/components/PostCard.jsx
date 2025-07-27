@@ -16,7 +16,7 @@ const PostCard = ({ post }) => {
           
           {/* Image Section */}
           <div className="w-full md:w-1/3 p-2 bg-white rounded-3xl shadow-md border border-slate-200">
-            <div className="w-full h-36 overflow-hidden rounded-2xl relative bg-slate-100">
+            <div className="w-full aspect-[5/5]   overflow-hidden rounded-2xl relative bg-slate-100">
               {!imageLoaded && (
                 <div className="absolute inset-0 animate-pulse bg-slate-200 rounded-2xl" />
               )}
@@ -24,7 +24,7 @@ const PostCard = ({ post }) => {
                 src={`${IMAGE_URL}/${post.image}`}
                 alt="uploaded"
                 onLoad={() => setImageLoaded(true)}
-                className={`w-full h-full object-cover  duration-500 rounded-2xl cursor-pointer  transform transition ease-in-out hover:scale-105  hover:shadow-lg ${
+                className={`w-full  h-full object-cover  duration-500 rounded-2xl cursor-pointer  transform transition ease-in-out hover:scale-105  hover:shadow-lg ${
                   imageLoaded ? "opacity-100" : "opacity-0"
                 }`}
                 onClick={() => setPreviewImage(`${IMAGE_URL}/${post.image}`)}
