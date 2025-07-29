@@ -3,6 +3,7 @@ import HowItWorks from "../components/HowItWorks"
 import RecentPosts from "../components/RecentPosts"
 import TrustSection from "../components/Trust & Privacy"
 import FAQ from "../components/FAQ"
+import Footer from "../components/Footer"
 const HomePage = () =>{
   return(
 <>
@@ -11,6 +12,7 @@ const HomePage = () =>{
 <RecentPosts></RecentPosts>
 <TrustSection></TrustSection>
 <FAQ></FAQ>
+<Footer></Footer>
 </>
   )
 }
