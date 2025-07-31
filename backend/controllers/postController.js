@@ -3,10 +3,10 @@ const path = require('path')
 exports.createPost = async (req,res) => {
   try {
     const {title,status,itemName,date,location,contactInfo,postedBy} = req.body;
-
+    const userId = req.user._id
     const image = req.file ? req.file.path : null
     
-    const newPost =  new Post({title,status,itemName,date,location,contactInfo,postedBy,image:req.file.path})
+    const newPost =  new Post({title,status,itemName,date,location,contactInfo,postedBy,image:req.file.path,userId})
 
     await newPost.save()
     res.status(201).json({message: "Post added successfully",data:newPost})
@@ -17,7 +17,7 @@ exports.createPost = async (req,res) => {
 
 exports.getPosts = async (req,res) => {
  try {
-  const {status,itemName} = req.query;
+  const {status,itemName,limit} = req.query;
 
   let filter = {};
 
@@ -29,14 +29,25 @@ exports.getPosts = async (req,res) => {
     filter.itemName = {$regex: itemName, $options: "i"};
   }
 
-  const posts = await Post.find(filter).sort({date: -1});
+  const posts = await Post.find(filter).sort({date: -1})
+  .limit(Number(limit));
 
   if(!posts || posts.length === 0){
-    res.status(404).json({message: "No matching posts found"});
+    return res.status(404).json({message: "No matching posts found"});
   }
 
   res.status(200).json({data: posts})
  } catch (error) {
   res.status(500).json({error:error.message})
  } 
+}
+
+exports.getMyPosts = async(req,res)=>{
+  try {
+     const userId = req.user._id
+  const posts = await Post.find({userId})
+    res.status(200).json(posts)
+  } catch (error) {
+    res.status(500).json({error: error.message})
+  }
 }

@@ -7,7 +7,7 @@ const options = {
 };
 res.cookie("access_token",accessToken,{
   ...options,
-  maxAge: 10 * 1000 
+  maxAge: 10 * 60 * 1000 
 });
 
 res.cookie("refresh_token",refreshToken,{

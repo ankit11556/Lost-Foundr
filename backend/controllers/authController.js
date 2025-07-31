@@ -20,10 +20,8 @@ exports.registerUser = async (req,res) => {
     await newUser.save()
 
     const emailToken = generateEmailVerificationToken(newUser._id)
-    // console.log("email token",emailToken);
     const verifyLink = `${process.env.CLIENT_URL}/verify-email?token=${emailToken}`
 
-    // console.log("verify link",verifyLink);
     await sendEmail(
       newUser.email,
       "Verify your email",
