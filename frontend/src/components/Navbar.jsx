@@ -29,7 +29,7 @@ const Navbar = () =>{
           </Link>
         </li>
         <li className="flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600">
-          <Link href="" className="flex items-center">
+          <Link to="my-post" className="flex items-center">
             My Post
           </Link>
         </li>
