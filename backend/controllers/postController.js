@@ -51,3 +51,19 @@ exports.getMyPosts = async(req,res)=>{
     res.status(500).json({error: error.message})
   }
 }
+
+exports.deletePost = async (req,res) => {
+  try {
+    const {id} = req.params;
+    const post = await Post.findByIdAndDelete({_id: id,userId:req.user._id})
+
+    if(!post){
+      return res.status(404).json({message: "Post not found"})
+    }
+
+    res.status(200).json({message: "Post delete successfully"})
+  } catch (error) {
+    res.status(500).json({message: "Something went wrong",error: error.message})
+  }
+}
+
