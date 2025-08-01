@@ -24,3 +24,7 @@ import axiosInstance from "./axiosInstance"
 
  return await axiosInstance.get(url)
  }
+
+ export const getMyPostApi = async () => {
+  return await  axiosInstance.get(`post/my-posts`)
+ }

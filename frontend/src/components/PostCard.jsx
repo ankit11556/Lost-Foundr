@@ -4,15 +4,17 @@ import { IoWalletOutline } from "react-icons/io5";
 
 const IMAGE_URL = import.meta.env.VITE_SERVER_IMAGE_URL;
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post,children }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <>
       {/* Card */}
-      <div className="max-w-xs md:max-w-md lg:max-w-lg mx-auto w-full h-auto">
-        <div className="bg-white text-slate-800 shadow-lg flex flex-col md:flex-row mx-auto px-6 py-4 rounded-2xl w-full h-auto border border-slate-200 transition">
+      <div className="max-w-xs md:max-w-md lg:max-w-lg mx-auto w-full h-auto ">
+        <div className="bg-white text-slate-800 shadow-lg flex flex-col md:flex-row mx-auto px-6 py-4 rounded-2xl w-full h-auto border border-slate-200 transition relative">
+
+          {children}
           
           {/* Image Section */}
           <div className="w-full md:w-1/3 p-2 bg-white rounded-3xl shadow-md border border-slate-200">
