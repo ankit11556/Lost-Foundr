@@ -1,10 +1,14 @@
 const Post = require("../models/posts");
-const path = require('path')
+const path = require('path');
 exports.createPost = async (req,res) => {
   try {
     const {title,status,itemName,date,location,contactInfo,postedBy} = req.body;
     const userId = req.user._id
     const image = req.file ? req.file.path : null
+    console.log(image);
+    console.log(path);
+    
+    
     
     const newPost =  new Post({title,status,itemName,date,location,contactInfo,postedBy,image:req.file.path,userId})
 
@@ -67,3 +71,27 @@ exports.deletePost = async (req,res) => {
   }
 }
 
+exports.editPost = async (req,res) => {
+  try {
+    const {title,status,itemName,date,location,contactInfo,postedBy} = req.body
+    const image = req.file ? req.file.path : null
+    console.log("image:",image);
+    console.log("path:",path);
+    
+    
+    const {id} = req.params;
+    const edit = await Post.findByIdAndUpdate(
+      {_id: id,userId: req.user._id},
+      {title,status,itemName,date,location,contactInfo,postedBy,image:req.file.path},
+      {new: true,runValidators:true}
+    );
+
+    if(!edit){
+      return res.status(404).json({error: "Post not found"})
+    }
+
+    res.status(200).json({message: "Post update successfully",edit})
+  } catch (error) {
+    res.status(500).json({error: error.message})
+  }
+}
