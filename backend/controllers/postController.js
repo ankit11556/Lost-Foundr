@@ -74,15 +74,19 @@ exports.deletePost = async (req,res) => {
 exports.editPost = async (req,res) => {
   try {
     const {title,status,itemName,date,location,contactInfo,postedBy} = req.body
-    const image = req.file ? req.file.path : null
-    console.log("image:",image);
-    console.log("path:",path);
     
-    
+    const updateData ={
+       title,status,itemName,date,location,contactInfo,postedBy
+    };
+
+    if(req.file){
+      updateData.image = req.file.path
+    };
+
     const {id} = req.params;
     const edit = await Post.findByIdAndUpdate(
       {_id: id,userId: req.user._id},
-      {title,status,itemName,date,location,contactInfo,postedBy,image:req.file.path},
+      updateData,
       {new: true,runValidators:true}
     );
 
