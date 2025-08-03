@@ -28,3 +28,7 @@ import axiosInstance from "./axiosInstance"
  export const getMyPostApi = async () => {
   return await  axiosInstance.get(`post/my-posts`)
  }
+
+ export const deletePost = async (id) => {
+   return await axiosInstance.delete(`post/my-Posts/${id}`)
+ }

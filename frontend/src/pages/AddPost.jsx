@@ -13,6 +13,8 @@ const AddPost = () =>{
     image: null
   })
 
+  
+
   const handleInputChange  = (e) =>{
    const{name,value,files} = e.target;
   
@@ -129,7 +131,7 @@ const AddPost = () =>{
         type="submit"
         className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-500 transition-all duration-300 font-semibold text-lg"
       >
-        📤 Post Now
+       📤 Post Now
       </button>
     </form>
   </div>
