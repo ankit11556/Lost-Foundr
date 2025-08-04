@@ -1,11 +1,7 @@
 import axiosInstance from "./axiosInstance"
 
  export const addPostApi = async (data) => {
-  return await axiosInstance.post(`/post/add`,data,
-     {withCredentials: true}
-  )
-   
- }
+  return await axiosInstance.post(`/post/add`,data)}
 
  export const getPostApi = async(status,itemName,limit)=>{
  let url = `/post?`;
@@ -29,6 +25,10 @@ import axiosInstance from "./axiosInstance"
   return await  axiosInstance.get(`post/my-posts`)
  }
 
- export const deletePost = async (id) => {
+ export const deletePostApi = async (id) => {
    return await axiosInstance.delete(`post/my-Posts/${id}`)
+ }
+
+ export const editPostApi = async (id,data) => {
+  return await axiosInstance.put(`post/my-posts/${id}`,data)
  }

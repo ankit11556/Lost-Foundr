@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
-import { deletePost, getMyPostApi } from "../services/Api"
+import { deletePostApi, getMyPostApi } from "../services/Api"
 import PostCard from "../components/PostCard"
 import { HiDotsVertical } from "react-icons/hi";
-
+import { useNavigate } from 'react-router-dom';
 const MyPosts = () =>{
+
+  const navigate = useNavigate()
+  
   const [posts,setPosts] = useState([])
   useEffect(()=>{
     const myPostData = async () => {
@@ -11,7 +14,7 @@ const MyPosts = () =>{
       const res = await getMyPostApi();
       setPosts(res.data)
     } catch (error) {
-      
+      alert(error.res?.data?.message)
     }
   }
   myPostData()
@@ -19,12 +22,13 @@ const MyPosts = () =>{
 
   const handleDelete = async (id) => {
     try {
-      const res = await deletePost(id)
+      const res = await deletePostApi(id)
       alert(res.data.message);
 
      const newPosts = posts.filter((post)=>post._id !==id)
       setPosts(newPosts)
     } catch (error) {
+      console.log(res.data?.message);
       
     }
   }
@@ -40,7 +44,9 @@ const MyPosts = () =>{
       <div className="relative group">
         <HiDotsVertical className="cursor-pointer text-xl" />
         <div className="hidden group-hover:flex flex-col absolute right-0 mt-0.4 bg-white shadow-md border rounded-md">
-          <button className="px-4 py-2 hover:bg-gray-100 text-left">Edit</button>
+          <button className="px-4 py-2 hover:bg-gray-100 text-left"
+          onClick={()=> navigate("/add-post",{state: {post:post}})}>
+            Edit</button>
           <button className="px-4 py-2 hover:bg-gray-100 text-left text-red-500"
           onClick={()=>handleDelete(post._id)}
           >Delete</button>
