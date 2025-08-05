@@ -34,9 +34,22 @@ const MyPosts = () =>{
   }
 
   return(
-   <div className="flex flex-col gap-6  py-10 text-center ">
+   <div className="py-10 text-center ">
     <h1 className="text-3xl font-bold mb-6">My Posts</h1>
     
+    {posts.length == 0 ? (
+   <div>
+    <p className="text-2xl p-4 text-red-500">You haven’t added any posts yet.</p>
+    <button 
+    onClick={()=>navigate("/add-post")}
+    className="bg-blue-600 text-white py-2 px-4 rounded-xl hover:cursor-pointer hover:bg-blue-500 mt-10 text-xl"
+    >
+      Add Post
+      </button>
+   </div>
+    ):(
+
+    <div className=" w-full flex flex-col  gap-6">
     {posts.map((post, index) => (
   <PostCard key={index} post={post}>
     {/* 👇 3-dot icon as children */}
@@ -55,8 +68,7 @@ const MyPosts = () =>{
     </div>
   </PostCard>
 ))}
-
-    
+</div> )}
    </div>
   )
 }
