@@ -107,7 +107,7 @@ const AddPost = () =>{
       <input
         type="date"
         name="date"
-        value={formData?.date || ""}
+        value={formData?.date ? formData.date.slice(0,10) : ""}
         required
         onChange={handleInputChange}
         className="w-full px-5 py-3 border border-gray-300 rounded-xl text-gray-800 focus:ring-2 focus:ring-blue-400 outline-none"
@@ -146,7 +146,6 @@ const AddPost = () =>{
       <input
         type="file"
         name="image"
-        // value={formData?.image || ""}
         accept="image/*"
         required={!isEditMode}
         onChange={handleInputChange}
