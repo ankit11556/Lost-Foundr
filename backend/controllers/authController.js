@@ -6,6 +6,7 @@ const generateEmailVerificationToken = require('../utils/generateEmailToken')
 const sendEmail = require('../services/emailService')
 const {oauth2client} = require('../utils/googleConfig')
 const axios = require('axios')
+
 // user signup
 exports.registerUser = async (req,res) => {
   try {
@@ -99,7 +100,9 @@ exports.refreshAccessToken = (req,res) =>{
   }
 
   jwt.verify(refreshToken,process.env.REFRESH_TOKEN_KEY,(err,decoded)=>{
-    if(err) return res.status(403).json({message: "Invalid refresh token"})
+    if(err){ 
+      console.log("Refresh token error:", err.message);
+      return res.status(403).json({message: "Invalid refresh token"})}
       
       const {accessToken,refreshToken:newRefreshToken} = generateToken(decoded.userId)
       generateCookie(res,accessToken,newRefreshToken)
@@ -141,6 +144,10 @@ exports.verifyEmail = async (req,res) => {
 exports.googleLogin = async(req,res) =>{
   try {
     const {code} = req.query;
+    if (!code) {
+      return res.status(400).json({message: "Google authorization code missing" })
+    }
+
     const {tokens} = await oauth2client.getToken(code);
     oauth2client.setCredentials(tokens);
 
@@ -155,7 +162,7 @@ exports.googleLogin = async(req,res) =>{
     let user = await User.findOne({email})
 
     if (!user) {
-      user = await User({name,email,isVerified: true,authType: 'google'});
+      user = new User({name,email,isVerified: true,authType: 'google'});
       await user.save()
     }
 

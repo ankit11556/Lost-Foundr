@@ -17,13 +17,14 @@ if(!process.env.PORT || !process.env.CLIENT_URL || !process.env.MONGO_URI){
   throw new Error("Please define all required environment variables");
 }
 
-app.use('/uploads', express.static('uploads'));
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
   credentials: true,
   origin: process.env.CLIENT_URL
 }))
+
+app.use('/uploads', express.static('uploads'));
 
 const postRoute = require('./routes/postRoute')
 const authRoute = require('./routes/authRoutes')

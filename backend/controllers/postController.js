@@ -1,16 +1,11 @@
 const Post = require("../models/posts");
-const path = require('path');
 exports.createPost = async (req,res) => {
   try {
     const {title,status,itemName,date,location,contactInfo,postedBy} = req.body;
     const userId = req.user._id
-    const image = req.file ? req.file.path : null
-    console.log(image);
-    console.log(path);
+    const imagePath = req.file ? req.file.path.replace(/\\/g, "/") : null;
     
-    
-    
-    const newPost =  new Post({title,status,itemName,date,location,contactInfo,postedBy,image:req.file.path,userId})
+    const newPost =  new Post({title,status,itemName,date,location,contactInfo,postedBy,image: imagePath,userId})
 
     await newPost.save()
     res.status(201).json({message: "Post added successfully",data:newPost})
@@ -59,7 +54,7 @@ exports.getMyPosts = async(req,res)=>{
 exports.deletePost = async (req,res) => {
   try {
     const {id} = req.params;
-    const post = await Post.findByIdAndDelete({_id: id,userId:req.user._id})
+    const post = await Post.findOneAndDelete({_id: id,userId:req.user._id})
 
     if(!post){
       return res.status(404).json({message: "Post not found"})
@@ -98,4 +93,4 @@ exports.editPost = async (req,res) => {
   } catch (error) {
     res.status(500).json({error: error.message})
   }
-}
+} 
