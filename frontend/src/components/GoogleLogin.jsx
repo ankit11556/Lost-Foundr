@@ -34,23 +34,22 @@ const GoogleLogin = () =>{
 
       
   return(
-                  <div>
-                     <button
-                       type="button"
-                      className="w-full flex items-center justify-center gap-2 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-red-500 text-white hover:bg-red-400 hover:cursor-pointer"
-                      onClick={() => googleLogin()}
-                      >
-                     <span className="bg-white p-1 rounded">
-                     <img
-                     src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-                      alt="Google"
-                     className="w-5 h-5"
-                     />
-                    </span>
-                   Sign in with Google
-                 </button>
-                
-              </div>
+       <div>
+        <button
+            type="button"
+           className="w-full flex items-center justify-center gap-2 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-red-500 text-white hover:bg-red-400 hover:cursor-pointer"
+            onClick={() => googleLogin()}
+           >
+           <span className="bg-white p-1 rounded">
+           <img
+          src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+          alt="Google"
+          className="w-5 h-5"
+           />
+          </span>
+         Sign in with Google
+          </button>
+        </div>
   )
 }
 

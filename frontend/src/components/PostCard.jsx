@@ -2,8 +2,6 @@ import { useState } from "react";
 import { CiLocationOn, CiUser } from "react-icons/ci";
 import { IoWalletOutline } from "react-icons/io5";
 
-const IMAGE_URL = import.meta.env.VITE_SERVER_IMAGE_URL;
-
 const PostCard = ({ post,children }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -23,13 +21,13 @@ const PostCard = ({ post,children }) => {
                 <div className="absolute inset-0 animate-pulse bg-slate-200 rounded-2xl" />
               )}
               <img
-                src={`${IMAGE_URL}/${post.image}`}
-                alt="uploaded"
+                 src={post.image} 
+                alt="upload" 
                 onLoad={() => setImageLoaded(true)}
                 className={`w-full  h-full object-cover  duration-500 rounded-2xl cursor-pointer  transform transition ease-in-out hover:scale-105  hover:shadow-lg ${
                   imageLoaded ? "opacity-100" : "opacity-0"
                 }`}
-                onClick={() => setPreviewImage(`${IMAGE_URL}/${post.image}`)}
+                onClick={() => setPreviewImage(post.image)}
               />
             </div>
           </div>
