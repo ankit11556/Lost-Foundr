@@ -1,107 +1,177 @@
-import { Link } from "react-router-dom"
-import { useAuth } from "../contexts/AuthContext"
-import { useState } from "react"
-const Navbar = () =>{
-  const {user,userLogout} = useAuth()
-  const [isOpen,setIsOpen] = useState(false)
-  return(
+import { NavLink } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useState } from "react";
+
+const Navbar = () => {
+  const { user, userLogout } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Common link style function
+  const linkClasses = ({ isActive }) =>
+    `flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600 ${
+      isActive ? "text-indigo-600 font-semibold underline" : ""
+    }`;
+
+  return (
     <>
-   <nav className="w-full bg-white text-slate-800  shadow-sm py-4 px-6 transition duration-200">
-  <div className="container mx-auto flex flex-wrap flex-row items-center justify-between  px-4 py-2 w-full">
-    <a href="/"
-      className="mr-4 block cursor-pointer py-1.5   font-bold text-2xl">
-      Lost&Foundr
-    </a>
-    
-    <div className="lg:block hidden">
-      <div className="flex w-full flex-row ">
-      <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 ">
-         <li className="flex items-center p-1 text-lg gap-x-2  hover:text-indigo-600">
-          <Link to="/" className="flex items-center">
-           Home
-          </Link>
-        </li>
-        <li className="flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600">
-          <Link to="all-posts" className="flex items-center">
-          All Post
-          </Link>
-        </li>
-        <li className="flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600">
-          <Link to="add-post" className="flex items-center">
-            Add Post
-          </Link>
-        </li>
-        <li className="flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600">
-          <Link to="my-post" className="flex items-center">
-            My Post
-          </Link>
-        </li>
-       
-      </ul>
-     
-      <div className="ml-20">
-        { user ?(
-     <button className="bg-red-600 hover:bg-red-700 text-white p-2 rounded font-medium text-lg hover:cursor-pointer "
-     onClick={userLogout}
-       >
-      Logout
-      </button>
-        ):(
-         <button className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded font-medium text-lg hover:cursor-pointer ">
-       <Link to="/login">Login</Link> 
-      </button> 
-        )}
-    </div>
-    </div>
-     </div>
+      <nav className="w-full bg-white text-slate-800 shadow-sm py-4 px-6 transition duration-200">
+        <div className="container mx-auto flex flex-wrap flex-row items-center justify-between px-4 py-2 w-full">
+          {/* Logo */}
+          <a
+            href="/"
+            className="mr-4 block cursor-pointer py-1.5 font-bold text-2xl"
+          >
+            Lost&Foundr
+          </a>
 
-    
+          {/* Desktop Menu */}
+          <div className="lg:flex hidden items-center">
+            <ul className="flex gap-6">
+              <li>
+                <NavLink to="/" className={linkClasses}>
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="all-posts" className={linkClasses}>
+                  All Post
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="add-post" className={linkClasses}>
+                  Add Post
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="my-post" className={linkClasses}>
+                  My Post
+                </NavLink>
+              </li>
+            </ul>
 
-    <button
-      className="relative ml-auto h-6 max-h-[40px] w-6 max-w-[40px] select-none rounded-lg text-center align-middle text-xs font-medium uppercase text-inherit transition-all hover:bg-transparent focus:bg-transparent active:bg-transparent disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:hidden"
-      type="button"
-      onClick={()=>setIsOpen(!isOpen)}
+            {/* Auth Buttons */}
+            <div className="ml-20">
+              {user ? (
+                <button
+                  className="bg-red-600 hover:bg-red-700 text-white p-2 rounded font-medium text-lg hover:cursor-pointer"
+                  onClick={userLogout}
+                >
+                  Logout
+                </button>
+              ) : (
+                <NavLink to="/login">
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded font-medium text-lg hover:cursor-pointer">
+                    Login
+                  </button>
+                </NavLink>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden block p-2"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? (
+              // Close Icon
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              // Hamburger Icon
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Slide-in Menu */}
+      <nav
+        className={`fixed top-0 right-0 h-full w-3/4 max-w-xs bg-white z-40 transform transition-transform duration-300 lg:hidden shadow-lg ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
-      <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2">
-          <path  strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </span>
-    </button>
-  
-  </div>
-</nav>
+        <ul className="flex flex-col p-6 gap-6">
+          <li>
+            <NavLink
+              to="/"
+              className={linkClasses}
+              onClick={() => setIsOpen(false)}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="all-posts"
+              className={linkClasses}
+              onClick={() => setIsOpen(false)}
+            >
+              All Post
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="add-post"
+              className={linkClasses}
+              onClick={() => setIsOpen(false)}
+            >
+              Add Post
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="my-post"
+              className={linkClasses}
+              onClick={() => setIsOpen(false)}
+            >
+              My Post
+            </NavLink>
+          </li>
+        </ul>
 
-{isOpen && ( 
-   <nav className="h-[100vh] fixed top-[0px] right-[0px] flex flex-col gap-10  w-full lg:hidden bg-white z-40 duration-1000 ">
-          <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 ">
-         <li className="flex items-center p-1 text-lg gap-x-2  hover:text-indigo-600">
-          <Link to="/" className="flex items-center">
-           Home
-          </Link>
-        </li>
-        <li className="flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600">
-          <Link to="all-posts" className="flex items-center">
-          All Post
-          </Link>
-        </li>
-        <li className="flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600">
-          <Link to="add-post" className="flex items-center">
-            Add Post
-          </Link>
-        </li>
-        <li className="flex items-center p-1 text-lg gap-x-2 hover:text-indigo-600">
-          <Link to="my-post" className="flex items-center">
-            My Post
-          </Link>
-        </li>
-       
-      </ul>
-     
-        </nav>
-         )} 
-         </>
-  )
-}
+        {/* Auth Button for Mobile */}
+        <div className="px-6">
+          {user ? (
+            <button
+              className="bg-red-600 hover:bg-red-700 text-white p-2 rounded font-medium text-lg w-full"
+              onClick={() => {
+                userLogout();
+                setIsOpen(false);
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <NavLink to="/login" onClick={() => setIsOpen(false)}>
+              <button className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded font-medium text-lg w-full">
+                Login
+              </button>
+            </NavLink>
+          )}
+        </div>
+      </nav>
+    </>
+  );
+};
 
-export default Navbar
+export default Navbar;
