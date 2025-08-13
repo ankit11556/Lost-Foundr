@@ -2,7 +2,7 @@ const generateCookie = (res,accessToken,refreshToken) =>{
   
 const options = {
   httpOnly: true,
-  secure: false,
+  secure: process.env.NODE_ENV === "production",
   sameSite: "lax"
 };
 res.cookie("access_token",accessToken,{
