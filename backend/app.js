@@ -40,7 +40,7 @@ app.use((err,req,res,next)=>{
   })
 })
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 connectDB().then(()=>{
 app.listen(PORT,()=>{
   console.log(`server is running at http://localhost:${PORT}`);
