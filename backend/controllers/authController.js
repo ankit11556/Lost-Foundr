@@ -79,15 +79,15 @@ exports.loginUser = async (req,res) => {
 //logout
 exports.logoutUser =  (req,res) => {
   res.clearCookie("access_token",{
-    httpOnly: true,
-    secure: true,
-    sameSite: "Strict"
+     httpOnly: true,
+     secure: process.env.NODE_ENV === "production",
+     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax"
   });
 
   res.clearCookie("refresh_token",{
-    httpOnly: true,
-    secure: true,
-    sameSite: "Strict"
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax"
   })
   return res.status(200).json({message: "Logged out successfully"})
 }
