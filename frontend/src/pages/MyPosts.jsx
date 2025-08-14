@@ -52,7 +52,7 @@ const MyPosts = () =>{
     <div className=" w-full flex flex-col  gap-6">
     {posts.map((post, index) => (
   <PostCard key={index} post={post}>
-    {/* 👇 3-dot icon as children */}
+    {/*  3-dot icon as children */}
     <div className="absolute top-2 right-2 z-10 ">
       <div className="relative group">
         <HiDotsVertical className="cursor-pointer text-xl" />
