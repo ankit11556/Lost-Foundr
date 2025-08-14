@@ -142,6 +142,7 @@ exports.verifyEmail = async (req,res) => {
 
 //google login
 exports.googleLogin = async(req,res) =>{
+  console.log("GOOGLE_REDIRECT_URI on login:", process.env.GOOGLE_REDIRECT_URI);
   try {
     const {code} = req.query;
     if (!code) {
