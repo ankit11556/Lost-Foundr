@@ -5,6 +5,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const GoogleLogin = () =>{
 
+const googleRedirectUri = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
+
  const {setIsAutheticated,setUser} = useAuth(); 
  
  const location = useLocation()
@@ -29,7 +31,8 @@ const GoogleLogin = () =>{
         const googleLogin = useGoogleLogin({
           onSuccess: responseGoogle,
           onError: responseGoogle,
-          flow: 'auth-code'
+          flow: 'auth-code',
+          redirect_uri:googleRedirectUri
           })
 
       
