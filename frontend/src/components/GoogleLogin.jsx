@@ -18,13 +18,12 @@ const GoogleLogin = () =>{
               try {
                   if(authResult['code']){
                     const result = await googleAuthApi(authResult['code'])
-                     setIsAutheticated(true); // login ho gaya
+                     setIsAutheticated(true); 
                      setUser(result.data.user)
                      navigate(from, { replace: true });
                   }
               } catch (error) {
                   console.error('error while req',error);
-                  
               }
           }
 

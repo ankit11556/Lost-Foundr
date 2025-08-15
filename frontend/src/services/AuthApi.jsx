@@ -21,5 +21,5 @@ export const emailVerifyApi = async (token) => {
 }
 
 export const googleAuthApi = async (code) => {
-  return await axiosInstance.get(`auth/google?code=${code}`)
+  return await axiosInstance.get(`/auth/google?code=${code}`)
 }
