@@ -5,8 +5,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const GoogleLogin = () =>{
 
-console.log("GOOGLE_REDIRECT_URI being sent:", redirect_uri);
-
  const {setIsAutheticated,setUser} = useAuth(); 
  
  const location = useLocation()
