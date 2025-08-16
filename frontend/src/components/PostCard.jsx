@@ -33,11 +33,12 @@ const PostCard = ({ post,children }) => {
           </div>
 
           {/* Text Section */}
-          <div className="flex flex-col justify-between w-full md:w-2/3 pl-4">
-            <div className="flex w-full justify-between py-2">
+          <div className="flex flex-col justify-between w-full md:w-2/3 pl-4 ">
+            <div className="flex w-full justify-between py-2  ">
               <span className="text-2xl font-semibold">{post.title}</span>
+              <div>
               <span
-                className={`text-sm px-3 py-1.5 rounded-xl text-white capitalize ${
+                className={`text-sm px-3 py-1.5 rounded-xl  text-white capitalize ${
                   post.status === "lost"
                     ? "bg-red-500"
                     : "bg-green-500"
@@ -45,17 +46,20 @@ const PostCard = ({ post,children }) => {
               >
                 {post.status}
               </span>
+              </div>
             </div>
 
-            <div className="flex justify-between w-full py-2 text-sm md:text-base">
-              <div className="flex flex-col gap-1">
+            <div className="flex justify-between w-full py-2 h-auto text-sm md:text-base ">
+              <div className="flex flex-col gap-1 ">
                 <div className="flex items-center gap-2">
                   <IoWalletOutline />
                   <span>{post.itemName}</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center  w-full ">
                   <CiLocationOn />
-                  <span>{post.location}</span>
+                  <div className="flex flex-wrap w-full h-full flex-col ">
+                  <span className="ml-0">{post.location}</span>
+                  </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <CiUser />
