@@ -49,16 +49,16 @@ exports.loginUser = async (req,res) => {
     const user = await User.findOne({email}).select('+password');
 
      if (!user) {
-      return res.status(401).json({message: 'User not found. Please sign up first.'})
+      return res.status(404).json({message: 'User not found. Please sign up first.'})
     }
 
     if (!user.isVerified) {
-      return res.status(401).json({message: "Please first verify your email"})
+      return res.status(403).json({message: "Please first verify your email"})
     }
 
     const isMatch = await user.isValidPassword(password)
     if (!isMatch) {
-      return res.status(401).json({message: 'Invalid credentials'})
+      return res.status(403).json({message: 'Invalid credentials'})
     }
 
     const {accessToken,refreshToken}  =  generateToken(user._id)   
@@ -142,7 +142,6 @@ exports.verifyEmail = async (req,res) => {
 
 //google login
 exports.googleLogin = async(req,res) =>{
-  console.log("GOOGLE_REDIRECT_URI on login:", process.env.GOOGLE_REDIRECT_URI);
   try {
     const {code} = req.query;
     if (!code) {

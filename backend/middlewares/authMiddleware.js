@@ -10,7 +10,7 @@ const protectRoutes =async (req,res,next) =>{
 
   //check json web token exists & is verified
   if(!token){
-    return res.status(403).json({message: "Not authorized, token missing"})
+    return res.status(401).json({message: "Not authorized, token missing"})
   }
 
   let decoded;
