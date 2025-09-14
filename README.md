@@ -38,12 +38,12 @@ Clone the repository and install dependencies:
 git clone https://github.com/ankit11556/Lost-Foundr.git
 
 # Frontend setup
-cd client
+cd frontend
 npm install
 npm run dev
 
 # Backend setup
-cd server
+cd backend
 npm install
 npm start
 
