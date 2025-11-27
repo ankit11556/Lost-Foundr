@@ -26,6 +26,10 @@ app.use(cors({
 
 app.use('/uploads', express.static('uploads'));
 
+app.get("/ping", (req, res) => {
+  res.send("alive");
+});
+
 const postRoute = require('./routes/postRoute')
 const authRoute = require('./routes/authRoutes')
 
